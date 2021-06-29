@@ -1,13 +1,17 @@
 [![CircleCI](https://circleci.com/gh/giantswarm/{APP-NAME}-app.svg?style=shield)](https://circleci.com/gh/giantswarm/{APP-NAME}-app)
 
-# {APP-NAME} chart
+# OMS-Agent chart
 
-Giant Swarm offers a {APP-NAME} App which can be installed in workload clusters.
-Here we define the {APP-NAME} chart with its templates and default configuration.
+Giant Swarm offers a OMS-Agent App which can be installed in Azure workload clusters.
+Here we define the OMS-Agent chart with its templates and default configuration.
 
 **What is this app?**
+This app installs a daemonset of [Operatioms Management Suite Agent](https://docs.microsoft.com/en-us/azure/azure-monitor/agents/agent-linux) from Microsoft for Azure Log Analytics.
+This agent collects the telemetry of the running Virtual Machines. 
 **Why did we add it?**
+This app has been added to accomodate our Customers running Log Anatylics to fully use the potential of monitoring services provided by Azure.
 **Who can use it?**
+It can be used by Giant Swarm Azure customers running Log Analytics.
 
 ## Installing
 
@@ -50,15 +54,15 @@ See our [full reference page on how to configure applications](https://docs.gian
 
 This app has been tested to work with the following workload cluster release versions:
 
-*
+* Azure v15.0.0
 
 ## Limitations
 
 Some apps have restrictions on how they can be deployed.
 Not following these limitations will most likely result in a broken deployment.
 
-*
+* Log Analytics Workspace ID and Key is a requirement.
 
 ## Credit
 
-* {APP HELM REPOSITORY}
+* https://github.com/microsoft/OMS-Agent-for-Linux
