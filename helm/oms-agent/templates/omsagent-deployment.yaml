@@ -79,6 +79,7 @@ spec:
          value: {{ .Values.omsagent.ISTEST | quote }}       
        securityContext:
          privileged: true
+         runAsNonRoot: true
        ports:
        - containerPort: 25225
          protocol: TCP
