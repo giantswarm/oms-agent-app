@@ -30,7 +30,9 @@ spec:
   - 'secret'
   - 'configMap'
   - 'hostPath'
-  - '/'
+  allowedHostPaths:
+    - pathPrefix: '/'
+      readOnly: true
   hostPID: true
   hostIPC: true
   hostNetwork: true
