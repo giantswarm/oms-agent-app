@@ -165,4 +165,3 @@ omsagent:
       limits:
         cpu: 1
         memory: 1Gi
-
