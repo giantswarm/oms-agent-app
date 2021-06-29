@@ -8,9 +8,4 @@ name: oms-agent
 sources:
   - https://github.com/microsoft/Docker-Provider/tree/ci_prod
   - https://docs.microsoft.com/en-us/azure/monitoring/monitoring-container-health
-maintainers:
-  - name: vishiy
-    email: visnara@microsoft.com
-  - name: ganga1980
-    email: gangams@microsoft.com
 version: [[ .Version ]]
