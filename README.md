@@ -54,7 +54,7 @@ See our [full reference page on how to configure applications](https://docs.gian
 
 This app has been tested to work with the following workload cluster release versions:
 
-* Azure v15.0.0
+* Azure v15.0.1
 
 ## Limitations
 
