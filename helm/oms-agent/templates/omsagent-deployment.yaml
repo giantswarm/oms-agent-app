@@ -78,7 +78,7 @@ spec:
        - name: ISTEST
          value: {{ .Values.omsagent.ISTEST | quote }}       
        securityContext:
-         privileged: false
+         privileged: false  
          runAsNonRoot: true
          readOnlyRootFilesystem: true
        ports:
