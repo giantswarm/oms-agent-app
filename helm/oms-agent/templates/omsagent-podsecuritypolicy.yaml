@@ -13,9 +13,9 @@ spec:
   readOnlyRootFilesystem: true
   allowPrivilegeEscalation: false
   runAsUser:
-    rule: RunAsAny
+    rule: runAsNonRoot
   seLinux:
-    rule: RunAsAny
+    rule: runAsNonRoot
   supplementalGroups:
     rule: 'MustRunAs'
     ranges:
