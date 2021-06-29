@@ -10,7 +10,8 @@ metadata:
    tier: node
 spec:
   privileged: true
-  allowPrivilegeEscalation: true
+  readOnlyRootFilesystem: true
+  allowPrivilegeEscalation: false
   runAsUser:
     rule: RunAsAny
   seLinux:
