@@ -3,38 +3,9 @@
 name: oms-agent
 namespace: oms-agent
 
-image:
-  registry: quay.io
-  name: giantswarm/ciprodd
-  tag: ciprod06112021
-  pullPolicy: IfNotPresent
-
-
-# Default values for azuremonitor-containers.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-
-## Microsoft OMS Agent image for kubernetes cluster monitoring
-## ref: https://github.com/microsoft/Docker-Provider/tree/ci_prod
-## Values of under Azure are being populated by Azure Arc K8s RP during the installation of the extension
-Azure:
-  Cluster:
-    Region: <your_cluster_region>
-    ResourceId: <your_cluster_id>
-  Extension:
-    Name: ""
-    ResourceId: ""
-  proxySettings:
-    isProxyEnabled: false
-    httpProxy: ""
-    httpsProxy: ""
-    noProxy: ""
-    proxyCert: ""
-
 omsagent:
   image:
-    registry: quay.io
-    name: giantswarm/ciprodd
+    repository: quay.io/giantswarm/ciprod
     tag: ciprod06112021
     pullPolicy: IfNotPresent
 
@@ -62,12 +33,8 @@ omsagent:
     wsid: aaaa
     key: bbbb
   domain: opinsights.azure.com
-  proxy: <your_proxy_config>
   env:
     clusterName: yolo
-    ## Applicable for only managed clusters hosted in Azure
-    clusterId: yes
-    clusterRegion: westeurope
   rbac: true
   logsettings:
     logflushintervalsecs: ""
