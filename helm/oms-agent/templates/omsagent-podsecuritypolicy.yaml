@@ -13,26 +13,17 @@ spec:
   readOnlyRootFilesystem: true
   allowPrivilegeEscalation: false
   runAsUser:
-    rule: MustRunAsNonRoot
+    rule: RunAsAny
   seLinux:
-    rule: MustRunAsNonRoot
+    rule: RunAsAny
   supplementalGroups:
-    rule: 'MustRunAs'
-    ranges:
-      - min: 1
-        max: 65535
+    rule: 'RunAsAny'
   fsGroup:
-    rule: 'MustRunAs'
-    ranges:
-      - min: 1
-        max: 65535
+    rule: 'RunAsAny'
   volumes:
   - 'secret'
   - 'configMap'
   - 'hostPath'
-  allowedHostPaths:
-    - pathPrefix: '/'
-      readOnly: true
   hostPID: true
   hostIPC: true
   hostNetwork: true
