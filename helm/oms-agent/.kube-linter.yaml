@@ -2,3 +2,5 @@ checks:
   addAllBuiltIn: true
   exclude:
   - sensitive-host-mounts
+  - no-readiness-probe
+  - run-as-non-root

@@ -78,12 +78,16 @@ spec:
           readOnly: true
         - mountPath: /var/run/host
           name: docker-sock
+          readOnly: true
         - mountPath: /var/log
           name: host-log
+          readOnly: true
         - mountPath: /var/lib/docker/containers
           name: containerlog-path
+          readOnly: true
         - mountPath: /etc/kubernetes/host
           name: azure-json-path
+          readOnly: true
         - mountPath: /etc/omsagent-secret
           name: omsagent-secret
           readOnly: true
@@ -93,6 +97,7 @@ spec:
         {{- if .Values.omsagent.logsettings.custommountpath }}
         - mountPath: {{ .Values.omsagent.logsettings.custommountpath }}
           name: custom-mount-path
+          readOnly: true
         {{- end }}
         - mountPath: /etc/config/settings/adx
           name: omsagent-adx-secret
