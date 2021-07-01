@@ -11,6 +11,8 @@ metadata:
    component: oms-agent
    tier: node
    owner: celestial
+ annotations:
+   email: celestial@giantswarm.io
 spec:
  replicas: 1
  selector:
@@ -25,7 +27,6 @@ spec:
    annotations:
     agentVersion: {{ .Values.omsagent.image.tag }}
     schema-versions: "v1"
-    email: celestial@giantswarm.io
     checksum/secret: {{ include (print $.Template.BasePath "/omsagent-secret.yaml") . | sha256sum }}
     checksum/config: {{ toYaml .Values.omsagent.resources | sha256sum }}
     checksum/logsettings: {{ toYaml .Values.omsagent.logsettings | sha256sum }}
