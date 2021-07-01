@@ -4,3 +4,4 @@ checks:
   - sensitive-host-mounts
   - no-readiness-probe
   - run-as-non-root
+  - required-annotation-email
