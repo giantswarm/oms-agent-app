@@ -68,35 +68,30 @@ spec:
        - name: ISTEST
          value: {{ .Values.omsagent.ISTEST | quote }}
        securityContext:
-         privileged: false
-         readOnlyRootFilesystem: true
+         privileged: true
        ports:
        - containerPort: 25225
          protocol: TCP
        - containerPort: 25224
          protocol: UDP
        volumeMounts:
-        - mountPath: /hostfs
-          name: host-root
-          readOnly: true
-        - mountPath: /var/run/host
-          name: docker-sock
-          readOnly: true
-        - mountPath: /var/log
-          name: host-log
-          readOnly: true
-        - mountPath: /var/lib/docker/containers
-          name: containerlog-path
-          readOnly: true
-        - mountPath: /etc/kubernetes/host
-          name: azure-json-path
-          readOnly: true
-        - mountPath: /etc/omsagent-secret
-          name: omsagent-secret
-          readOnly: true
-        - mountPath: /etc/config/settings
-          name: settings-vol-config
-          readOnly: true
+         - mountPath: /hostfs
+           name: host-root
+           readOnly: true
+         - mountPath: /var/run/host
+           name: docker-sock
+         - mountPath: /var/log
+           name: host-log
+         - mountPath: /var/lib/docker/containers
+           name: containerlog-path
+         - mountPath: /etc/kubernetes/host
+           name: azure-json-path
+         - mountPath: /etc/omsagent-secret
+           name: omsagent-secret
+           readOnly: true
+         - mountPath: /etc/config/settings
+           name: settings-vol-config
+           readOnly: true
         {{- if .Values.omsagent.logsettings.custommountpath }}
         - mountPath: {{ .Values.omsagent.logsettings.custommountpath }}
           name: custom-mount-path
