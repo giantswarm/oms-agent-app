@@ -9,6 +9,7 @@ metadata:
    component: oms-agent
    tier: node
 spec:
+  privileged: true
   allowPrivilegeEscalation: true
   runAsUser:
     rule: RunAsAny

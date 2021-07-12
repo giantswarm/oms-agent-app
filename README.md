@@ -52,14 +52,51 @@ Here is an example that would install the app to
 workload cluster `abc12`:
 
 ```
-# appCR.yaml
+apiVersion: application.giantswarm.io/v1alpha1
+kind: App
+metadata:
+  name: oms-agent
+  namespace: abc12
+spec:
+  catalog: giantswarm-playground
+  kubeConfig:
+    inCluster: false
+  name: oms-agent
+  namespace: oms-agent
+  version: 0.0.1
+  userConfig:
+    configMap:
+      name: oms-agent-user-values
+      namespace: abc12
+    secret:
+      name: oms-agent-user-secrets
+      namespace: abc12
+```
+
+```
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: oms-agent-user-values
+  namespace: abc12
+data:
+  values: |
+    env:
+      clusterName: w5fc9 
 
 ```
 
 ```
-# user-values-configmap.yaml
-
-
+apiVersion: v1
+kind: Secret
+metadata:
+  name: oms-agent-user-secrets
+  namespace: abc12
+data:
+  omsagent:
+    secret:
+      wsid: Azure_Log_Analytics_Workspace_ID
+      key: Azure_Log_Analytics_Primary_Key
 ```
 
 See our [full reference page on how to configure applications](https://docs.giantswarm.io/app-platform/app-configuration/) for more details.
