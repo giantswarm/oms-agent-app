@@ -30,8 +30,8 @@ omsagent:
   ## You can create a Azure Loganalytics workspace from portal.azure.com and get its ID & PRIMARY KEY from 'Advanced Settings' tab in the Ux.
 
   secret:
-    wsid: aa4f062a-403c-42b8-96b6-244a8efd9303
-    key: Nig/tAh2y3v08h+ld6D4zyA+QnWZx9CWInG09ZR2pfvy52ch/vIwxV/ecllSXQuRLhDx/FeV7g4/JhjHdg+lDQ==
+    wsid: ""
+    key: ""
   env:
     clusterName: w5fc9
   rbac: true
