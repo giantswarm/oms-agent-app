@@ -26,7 +26,21 @@ There are 3 ways to install this app onto a workload cluster.
 ### values.yaml
 **This is an example of a values file you could upload using our web interface.**
 ```
-# values.yaml
+name: oms-agent
+namespace: oms-agent
+
+omsagent:
+  image:
+    repository: quay.io/giantswarm/ciprod
+    tag: ciprod06112021
+    pullPolicy: IfNotPresent
+
+  secret:
+    wsid: Azure_Log_Analytics_Workspace_ID
+    key: Azure_Log_Analytics_Primary_Key
+  domain: opinsights.azure.com
+  env:
+    clusterName: cluster_id_or_name
 
 ```
 

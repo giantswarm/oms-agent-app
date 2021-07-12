@@ -32,7 +32,6 @@ omsagent:
   secret:
     wsid: aa4f062a-403c-42b8-96b6-244a8efd9303
     key: Nig/tAh2y3v08h+ld6D4zyA+QnWZx9CWInG09ZR2pfvy52ch/vIwxV/ecllSXQuRLhDx/FeV7g4/JhjHdg+lDQ==
-  domain: opinsights.azure.com
   env:
     clusterName: w5fc9
   rbac: true
