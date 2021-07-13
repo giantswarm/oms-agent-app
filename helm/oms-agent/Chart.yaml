@@ -1,0 +1,12 @@
+apiVersion: v1
+appVersion: ciprod06112021
+description: A Helm chart for oms-agent
+home: https://github.com/giantswarm/oms-agent-app
+icon: https://raw.githubusercontent.com/microsoft/Docker-Provider/ci_prod/img/azuremonitor-containers.svg
+name: oms-agent
+sources:
+  - https://github.com/microsoft/Docker-Provider/tree/ci_prod
+  - https://docs.microsoft.com/en-us/azure/monitoring/monitoring-container-health
+restrictions:
+  compatibleProviders: ["azure"]
+version: 0.1.0

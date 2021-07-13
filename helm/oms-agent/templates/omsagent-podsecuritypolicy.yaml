@@ -1,0 +1,37 @@
+apiVersion: policy/v1beta1
+kind: PodSecurityPolicy
+metadata:
+  name: omsagent-psp
+  labels:
+   chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+   release: {{ .Release.Name }}
+   heritage: {{ .Release.Service }}
+   component: oms-agent
+   tier: node
+spec:
+  privileged: true
+  allowPrivilegeEscalation: true
+  runAsUser:
+    rule: RunAsAny
+  seLinux:
+    rule: RunAsAny
+  supplementalGroups:
+    rule: 'MustRunAs'
+    ranges:
+      - min: 1
+        max: 65535
+  fsGroup:
+    rule: 'MustRunAs'
+    ranges:
+      - min: 1
+        max: 65535
+  volumes:
+  - 'secret'
+  - 'configMap'
+  - 'hostPath'
+  hostPID: true
+  hostIPC: true
+  hostNetwork: true
+  hostPorts:
+  - min: 1
+    max: 65536

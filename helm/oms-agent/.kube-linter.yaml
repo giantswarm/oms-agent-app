@@ -1,0 +1,11 @@
+checks:
+  addAllBuiltIn: true
+  exclude:
+  - sensitive-host-mounts
+  - no-readiness-probe
+  - run-as-non-root
+  - required-annotation-email
+  - privileged-container
+  - writable-host-mount
+  - no-read-only-root-fs
+  - privilege-escalation-container

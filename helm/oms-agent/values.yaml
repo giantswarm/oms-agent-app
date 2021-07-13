@@ -1,0 +1,131 @@
+name: oms-agent
+namespace: oms-agent
+
+omsagent:
+  image:
+    repository: quay.io/giantswarm/ciprod
+    tag: ciprod06112021
+    pullPolicy: IfNotPresent
+
+  # The priority used by the omsagent priority class for the daemonset pods
+  # Note that this is not execution piority - it is scheduling priority, as
+  # in getting scheduled to the node.  This needs to be greater than 0 such
+  # that the daemonset pods, which can not schedule onto different nodes as
+  # they are defined to run on specific nodes, are not accidentally frozen
+  # out of a node due to other pods showing up earlier in scheduling.
+  # (DaemonSet pods by definition only are created once the node exists for
+  # them to be created for and thus it is possible to have "normal" pods
+  # already in line to run on the node before the DeamonSet controller got a
+  # chance to build pod for the node and give it to the scheduler)
+  # Should be some number greater than default (0)
+  priority: 10
+
+  # This used for running agent pods in test mode.
+  # if set to true additional agent workflow logs will be emitted which are used for e2e and arc k8s conformance testing
+  ISTEST: false
+
+  ## To get your workspace id and key do the following
+  ## You can create a Azure Loganalytics workspace from portal.azure.com and get its ID & PRIMARY KEY from 'Advanced Settings' tab in the Ux.
+
+  secret:
+    wsid: ""
+    key: ""
+  env:
+    clusterName: w5fc9
+  rbac: true
+  logsettings:
+    logflushintervalsecs: ""
+    tailbufchunksizemegabytes: ""
+    tailbufmaxsizemegabytes: ""
+    ## Applicable for only Azure Stack Edge K8s since it has custom mount path for container logs which will have symlink to /var/log path
+    custommountpath: ""
+
+  ## Configure node tolerations for scheduling onto nodes with taints
+  ## Ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
+  ##
+  tolerations:
+    - operator: "Exists"
+      effect: "NoSchedule"
+    - operator: "Exists"
+      effect: "NoExecute"
+    - operator: "Exists"
+      effect: "PreferNoSchedule"
+
+  ## Pod scheduling preferences.
+  ## ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
+  ##
+  daemonset:
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - labelSelector:
+              matchExpressions:
+                - key: kubernetes.io/os
+                  operator: In
+                  values:
+                    - linux
+                - key: type
+                  operator: NotIn
+                  values:
+                    - virtual-kubelet
+                - key: kubernetes.io/arch
+                  operator: In
+                  values:
+                    - amd64
+
+  deployment:
+    affinity:
+      nodeAffinity:
+        # affinity to schedule on to ephemeral os node if its available
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+              - key: storageprofile
+                operator: NotIn
+                values:
+                - managed
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - labelSelector:
+              matchExpressions:
+                - key: kubernetes.io/os
+                  operator: In
+                  values:
+                    - linux
+                - key: type
+                  operator: NotIn
+                  values:
+                    - virtual-kubelet
+                - key: kubernetes.io/role
+                  operator: NotIn
+                  values:
+                    - master
+                - key: kubernetes.io/arch
+                  operator: In
+                  values:
+                    - amd64
+
+  ## Configure resource requests and limits
+  ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
+  ##
+  resources:
+    daemonsetlinux:
+      requests:
+        cpu: 75m
+        memory: 225Mi
+      limits:
+        cpu: 150m
+        memory: 600Mi
+    daemonsetwindows:
+      limits:
+        cpu: 200m
+        memory: 600Mi
+    deployment:
+      requests:
+        cpu: 150m
+        memory: 250Mi
+      limits:
+        cpu: 1
+        memory: 1Gi
