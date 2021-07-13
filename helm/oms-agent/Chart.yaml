@@ -9,4 +9,4 @@ sources:
   - https://docs.microsoft.com/en-us/azure/monitoring/monitoring-container-health
 restrictions:
   compatibleProviders: ["azure"]
-version: [[ .Version ]]
+version: 0.1.0
