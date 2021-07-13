@@ -116,4 +116,4 @@ Not following these limitations will most likely result in a broken deployment.
 
 ## Credit
 
-* https://github.com/microsoft/OMS-Agent-for-Linux
+* https://github.com/microsoft/Docker-Provider/tree/ci_prod/charts/azuremonitor-container
