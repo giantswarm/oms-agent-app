@@ -67,6 +67,8 @@ spec:
        {{- end }}
        - name: ISTEST
          value: {{ .Values.omsagent.ISTEST | quote }}
+       - name: ACS_RESOURCE_NAME
+         value: {{ .Values.omsagent.env.clusterName | quote }}
        securityContext:
          privileged: true
        ports:
