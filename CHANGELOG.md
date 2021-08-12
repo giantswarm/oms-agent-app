@@ -7,10 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2021-08-12
+
 ### Fixed
 
 - Fix missing cluster name.
 
 This is the first release of oms-agent-app.
 
-[Unreleased]: https://github.com/giantswarm/oms-agent-app/tree/master
+[Unreleased]: https://github.com/giantswarm/oms-agent-app/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/giantswarm/oms-agent-app/releases/tag/v0.2.0
