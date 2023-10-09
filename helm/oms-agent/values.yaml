@@ -129,3 +129,7 @@ omsagent:
       limits:
         cpu: 1
         memory: 1Gi
+
+global:
+  podSecurityStandards:
+    enforced: false
